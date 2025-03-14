@@ -94,9 +94,8 @@ public class NoteController {
         }
         String username = jwtTokenProvider.getUsernameFromToken(token);
         User user = userService.getUser(username);
-        Note note= noteService.findByIdAndUserId(noteId, user.getId());
-            return ResponseEntity.ok(noteService.
-                    updateNote(noteId, noteBody.getTitle(), noteBody.getContent(), user));
+        NoteDTO noteDto=noteService.updateNote(noteId, noteBody.getTitle(), noteBody.getContent(), user);
+        return ResponseEntity.ok(noteDto);
     }
 }
 @Getter
@@ -106,5 +105,6 @@ class NoteBody{
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
 
 }

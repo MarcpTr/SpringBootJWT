@@ -53,14 +53,18 @@ public class NoteService {
     }
 
     public NoteDTO updateNote(Long noteId, String title, String content, User user) {
+        Note preUpd= noteRepository.findByIdAndUserId(noteId, user.getId()).get();
+        NoteDTO noteDTO= new NoteDTO(noteId, title,content, preUpd.getCreatedAt(),preUpd.getUpdatedAt());
+        System.out.println("Fecha " +preUpd.getCreatedAt());
         Note note = new Note();
         note.setId(noteId);
         note.setUser(user);
         note.setTitle(title);
         note.setContent(content);
-        note = noteRepository.saveAndFlush(note);
-        NoteDTO noteDTO=new NoteDTO(note.getId(), note.getTitle(),note.getContent(), note.getCreatedAt(), note.getUpdatedAt());
-        return noteDTO;
+        note=noteRepository.save(note);
+        noteRepository.flush();
+        noteDTO.setUpdateAt(note.getUpdatedAt());
+        return  noteDTO;
     }
     public Note findByIdAndUserId(Long noteId, Long id) {
         return noteRepository.findByIdAndUserId(noteId, id).orElseThrow(()-> new ResourceNotFound("Recurso no encontrado"));

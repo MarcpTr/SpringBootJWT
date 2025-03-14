@@ -2,7 +2,7 @@ package com.example.demo.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
 import lombok.Setter;
 
 import java.sql.Timestamp;
