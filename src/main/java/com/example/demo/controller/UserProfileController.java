@@ -7,16 +7,21 @@ import com.example.demo.model.User;
 import com.example.demo.model.dto.ProfileDTO;
 import com.example.demo.service.NoteService;
 import com.example.demo.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserProfileController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -35,5 +40,27 @@ public class UserProfileController {
         ProfileDTO profileDTO= new ProfileDTO(user.getUsername(), user.getEmail(), user.getCreated_at());
         return ResponseEntity.ok(profileDTO);
     }
+    @DeleteMapping("/profile/remove")
+    public ResponseEntity<?> removeUserProfile(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        if (!jwtTokenProvider.validateToken(token)) {
+            throw new InvalidLogin("Credenciales incorrectas");
+        }
+        String username = jwtTokenProvider.getUsernameFromToken(token);
+        User user= userService.getUser(username);
+        noteService.deleteByUserId(user.getId());
+        userService.removeUser(user.getId());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new userDeleted("Usuario Borrado"));
+
+    }
+
+}
+
+@Getter
+@Setter
+@AllArgsConstructor
+class userDeleted {
+    private String mensaje;
 
 }

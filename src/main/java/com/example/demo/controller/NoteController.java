@@ -24,6 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class NoteController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -87,7 +88,7 @@ public class NoteController {
     @PatchMapping("/update/{noteId}")
     public ResponseEntity<?> updateNote(@RequestHeader("Authorization") String authHeader,
                                           @PathVariable Long noteId,
-                                          @RequestPart(name="note") NoteBody noteBody){
+                                          @RequestBody NoteBody noteBody){
         String token = authHeader.substring(7);
         if (!jwtTokenProvider.validateToken(token)) {
             throw new InvalidLogin("Credenciales incorrectas");

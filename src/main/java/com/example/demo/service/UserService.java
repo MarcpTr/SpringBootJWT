@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.exception.*;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,10 @@ public class UserService {
             return user;
         }
         throw new InvalidLogin("Credenciales incorrectas");
+    }
+
+    @Transactional
+    public void removeUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 }
