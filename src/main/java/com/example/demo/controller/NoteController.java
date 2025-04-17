@@ -45,7 +45,7 @@ public class NoteController {
     }
 
     @PostMapping("/addNote")
-    public ResponseEntity<?> addNote(@RequestHeader("Authorization") String authHeader, @RequestPart("note") NoteBody noteBody) {
+    public ResponseEntity<?> addNote(@RequestHeader("Authorization") String authHeader, @RequestBody NoteBody noteBody) {
         String token = authHeader.substring(7);
         if (!jwtTokenProvider.validateToken(token)) {
             throw new InvalidLogin("Credenciales incorrectas");
