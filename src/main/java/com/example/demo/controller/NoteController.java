@@ -98,6 +98,7 @@ public class NoteController {
         NoteDTO noteDto=noteService.updateNote(noteId, noteBody.getTitle(), noteBody.getContent(), user);
         return ResponseEntity.ok(noteDto);
     }
+
 }
 @Getter
 @Setter
