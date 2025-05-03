@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.config.JwtTokenProvider;
 import com.example.demo.exception.InvalidLogin;
-import com.example.demo.model.Note;
 import com.example.demo.model.User;
 import com.example.demo.model.dto.ProfileDTO;
 import com.example.demo.service.NoteService;
@@ -13,11 +12,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
