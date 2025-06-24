@@ -82,28 +82,24 @@ Authentication is handled using **JWT tokens**, which are generated upon login a
 #### ☕ Java (Entity)
 
 ```java
-@Entity
-@Table(name = "notes")
-public class Note {
 
+@Entity
+@Getter
+@Setter
+public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     private String content;
-
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name="created_at", nullable = false, updatable = false)
     private Timestamp createdAt;
-
+    @Column(name="updated_at")
     @UpdateTimestamp
-    @Column(name = "updated_at")
     private Timestamp updatedAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id",  nullable = false)
     @CreatedBy
     private User user;
 }
