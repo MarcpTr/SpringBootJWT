@@ -48,7 +48,7 @@ Authentication is handled using **JWT tokens**, which are generated upon login a
 
 ---
 
-### 📝 Notes
+###  Notes
 
 | Method | Route                      | Description                    |
 |--------|----------------------------|--------------------------------|
