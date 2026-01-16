@@ -1,11 +1,11 @@
 
-# 📚 Spring Boot Notes API
+#  Spring Boot Notes API
 
 A RESTful API built with **Spring Boot**, **Spring Security 6**, **JWT**, and **MySQL** that allows users to register, log in, and securely manage their personal notes. It uses **DTOs (Data Transfer Objects)** to transfer data between application layers.
 
 ---
 
-## 🚀 Technologies Used
+##  Technologies Used
 
 - Java 17+
 - Spring Boot
@@ -17,15 +17,15 @@ A RESTful API built with **Spring Boot**, **Spring Security 6**, **JWT**, and **
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 Authentication is handled using **JWT tokens**, which are generated upon login and required to access protected routes (`/api/**`).
 
 ---
 
-## 📦 Endpoints
+##  Endpoints
 
-### 🛡️ Authentication
+###  Authentication
 
 | Method | Route            | Description               |
 |--------|------------------|---------------------------|
@@ -39,7 +39,7 @@ Authentication is handled using **JWT tokens**, which are generated upon login a
 
 ---
 
-### 👤 User Profile
+###  User Profile
 
 | Method | Route                 | Description                    |
 |--------|----------------------|--------------------------------|
@@ -60,11 +60,11 @@ Authentication is handled using **JWT tokens**, which are generated upon login a
 
 ---
 
-## 🧱 Data Structure (DTOs)
+##  Data Structure (DTOs)
 
 > DTOs are used to receive and send data between the client and server, hiding internal models.
 
-### 📄 Example: `NoteDto`
+###  Example: `NoteDto`
 
 
 
@@ -73,13 +73,13 @@ Authentication is handled using **JWT tokens**, which are generated upon login a
       "content": "Note content"
     }
 
-## 🗄️ Data Structure (Real Model)
+##  Data Structure (Real Model)
 
 > The real model represents the full entity persisted in the database. It contains technical fields (IDs, timestamps, relations) not exposed through the DTO.
 
-### 📄 Example: `Note`
+###  Example: `Note`
 
-#### ☕ Java (Entity)
+####  Java (Entity)
 
 ```java
 
@@ -105,7 +105,7 @@ public class Note {
 }
 ```
 
-> 📝 **Note:** While the `NoteDto` only contains fields relevant to the client (`title`, `content`), the model also includes metadata like `id`, `createdAt`, `updatedAt`, and the related `user`, which are managed on the server side.
+>  **Note:** While the `NoteDto` only contains fields relevant to the client (`title`, `content`), the model also includes metadata like `id`, `createdAt`, `updatedAt`, and the related `user`, which are managed on the server side.
 
 ---
 
