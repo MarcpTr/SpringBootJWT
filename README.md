@@ -103,9 +103,5 @@ public class Note {
     @CreatedBy
     private User user;
 }
-```
 
->  **Note:** While the `NoteDto` only contains fields relevant to the client (`title`, `content`), the model also includes metadata like `id`, `createdAt`, `updatedAt`, and the related `user`, which are managed on the server side.
-
----
 
